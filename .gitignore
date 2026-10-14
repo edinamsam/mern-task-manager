@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Environment variables and secrets
+.env
+.env.*
+
+# Allow safe example environment files
+!.env.example
+
+# Build output
+dist/
+
+# Logs
+*.log
+
+# Operating system files
+.DS_Store
