@@ -14,7 +14,9 @@ function App() {
   useEffect(() => {
     const obtainData = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/tasks");
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/tasks`,
+        );
 
         if (!response.ok) {
           throw new Error("Failed to retrieve tasks");
@@ -63,13 +65,16 @@ function App() {
     try {
       setIsAdding(true);
 
-      const response = await fetch("http://localhost:5000/api/tasks", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/tasks`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ title: title }),
         },
-        body: JSON.stringify({ title: title }),
-      });
+      );
 
       if (response.ok) {
         const result = await response.json();
@@ -93,7 +98,7 @@ function App() {
     try {
       const updatedCompleted = !task.completed;
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${task._id}`,
+        `${import.meta.env.VITE_API_URL}/api/tasks/${task._id}`,
         {
           method: "PATCH",
           headers: {
@@ -132,7 +137,7 @@ function App() {
 
     try {
       const response = await fetch(
-        `http://localhost:5000/api/tasks/${task._id}`,
+        `${import.meta.env.VITE_API_URL}/api/tasks/${task._id}`,
         {
           method: "DELETE",
         },
